@@ -1,22 +1,37 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { ITodoForm } from "../../../models/todo.model";
-import { Button, Form, Input, Select } from 'antd';
+import { ITodo, ITodoForm } from "../../../models/todo.model";
+import { Input } from 'antd';
 import './TodoForm.scss'
 import { AppDispatch } from "../../../redux/store";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../../../redux/todo.store";
+import { addTodo, updateTodo } from "../../../redux/todo.store";
+import { useNavigate } from "react-router-dom";
 
-export const TodoForm: FunctionComponent = () => {
+interface ITodoFormProps {
+    todoToEdit?: ITodo
+}
+
+export const TodoForm: FunctionComponent<ITodoFormProps> = ({ todoToEdit }) => {
     const dispatch: AppDispatch = useDispatch();
+    const navigate = useNavigate();
 
     const { TextArea } = Input;
-    const { control, handleSubmit } = useForm<ITodoForm>();
+    const todoForm = useForm<ITodoForm>();
 
-    const onSubmit = handleSubmit((data) => {
-        console.log(data);
-        dispatch(addTodo(data))
+    useEffect(() => {
+        if (!todoToEdit) return
+        todoForm.reset({ ...todoToEdit })
+    }, [todoToEdit])
 
+    const onSubmit = todoForm.handleSubmit((data) => {
+        if (data.id) {
+            dispatch(updateTodo(data))
+            navigate('/todo')
+        } else {
+            dispatch(addTodo(data))
+            todoForm.reset()
+        }
     });
 
     return (
@@ -26,16 +41,17 @@ export const TodoForm: FunctionComponent = () => {
                     <Input addonBefore='title:' {...field} />
                 }
                 name="title"
-                control={control}
+                control={todoForm.control}
                 defaultValue=""
             />
             <Controller
                 render={({ field }) => <TextArea placeholder="body" {...field} />}
                 name="body"
-                control={control}
+                control={todoForm.control}
                 defaultValue=""
             />
-            <button type="submit">Submit</button>
+            <button type="submit">{todoToEdit ? 'Save' : 'Submit'}</button>
         </form>
+
     )
 }

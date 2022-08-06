@@ -1,20 +1,24 @@
 import { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 import { ITodo } from "../../../models/todo.model";
 import { TodoPreview } from "../TodoPreview/TodoPreview";
 import './TodoList.scss'
 
 interface ITodoListProps {
     todos: ITodo[],
+    handleEdit: Function
 }
 
-export const TodoList: FunctionComponent<ITodoListProps> = ({ todos }) => {
+export const TodoList: FunctionComponent<ITodoListProps> = ({ todos, handleEdit }) => {
 
     return (
         <ul className="todo-list">
             {!!todos.length ? todos.map(todo => {
                 return (
                     <li className="" key={todo.id}>
-                        <TodoPreview todo={todo} />
+                        <Link to={todo.id} className='link' >
+                            <TodoPreview todo={todo} handleEdit={handleEdit} />
+                        </Link>
                     </li>
                 )
             }) : <h2>No Todos to show</h2>

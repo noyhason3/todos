@@ -5,6 +5,7 @@ export interface ITodo {
 }
 
 export interface ITodoForm {
+    id?:string;
     title: string;
     body: string;
 }
