@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import { FunctionComponent } from 'react';
 import { Home } from './pages/Home/Home';
 import './App.scss';
@@ -9,7 +9,7 @@ import { Header } from './cmps/Header/Header';
 export const App: FunctionComponent = () => {
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -17,7 +17,7 @@ export const App: FunctionComponent = () => {
             <Route path=":id" element={<EditTodoModal />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }

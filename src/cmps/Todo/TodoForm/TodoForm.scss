@@ -29,9 +29,18 @@
 }
 
 @media (max-width: 980px) {
-    .todo-form {
-      flex-direction: column;
-      justify-content: space-around;
-      height: unset;
+    .edit-todo-modal{
+        .todo-form {
+            flex-direction: column;
+            justify-content: space-around;
+            height: unset;
+        }
     }
+}
+@media (max-width: 580px) {
+        .todo-form {
+            flex-direction: column;
+            justify-content: space-around;
+            height: unset;
+        }
 }
