@@ -43,14 +43,23 @@ export const todoSlice = createSlice({
             storageService.store('todos', state.todos)
         },
         updateTodo: (state, action) => {
+            console.log(action.payload);
             const existTodo = state.todos.find(todo => todo.id === action.payload.id)
             const existTodoIdx = state.todos.findIndex(todo => todo.id === action.payload.id)
             if (!existTodo) return;
             const updatedTodo = { ...existTodo, ...action.payload }
             state.todos[existTodoIdx] = updatedTodo;
             storageService.store('todos', state.todos)
+        },
+        deleteTodo: (state, action) => {
+            const deleteTodoIdx = state.todos.findIndex(todo => {
+                return todo.id === action.payload
+            })
+            if (deleteTodoIdx < 0) return;
+            state.todos.splice(deleteTodoIdx, 1)
+            storageService.store('todos', state.todos)
         }
     }
 })
 
-export const { setTodos,setCurrTodo, addTodo, updateTodo } = todoSlice.actions;
+export const { setTodos, setCurrTodo, addTodo, updateTodo, deleteTodo } = todoSlice.actions;

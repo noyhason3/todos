@@ -6,10 +6,10 @@ import './TodoList.scss'
 
 interface ITodoListProps {
     todos: ITodo[],
-    handleEdit: Function
+    handleDelete: Function
 }
 
-export const TodoList: FunctionComponent<ITodoListProps> = ({ todos, handleEdit }) => {
+export const TodoList: FunctionComponent<ITodoListProps> = ({ todos, handleDelete }) => {
 
     return (
         <ul className="todo-list">
@@ -17,7 +17,7 @@ export const TodoList: FunctionComponent<ITodoListProps> = ({ todos, handleEdit 
                 return (
                     <li className="" key={todo.id}>
                         <Link to={todo.id} className='link' >
-                            <TodoPreview todo={todo} handleEdit={handleEdit} />
+                            <TodoPreview todo={todo} handleDelete={handleDelete} />
                         </Link>
                     </li>
                 )
