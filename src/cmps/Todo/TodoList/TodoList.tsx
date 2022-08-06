@@ -6,18 +6,19 @@ import './TodoList.scss'
 
 interface ITodoListProps {
     todos: ITodo[],
-    handleDelete: Function
+    handleDelete: Function,
+    toggleDone: Function
 }
 
-export const TodoList: FunctionComponent<ITodoListProps> = ({ todos, handleDelete }) => {
+export const TodoList: FunctionComponent<ITodoListProps> = ({ todos, handleDelete, toggleDone }) => {
 
     return (
         <ul className="todo-list">
             {!!todos.length ? todos.map(todo => {
                 return (
-                    <li className="" key={todo.id}>
+                    <li className="list-item" key={todo.id}>
                         <Link to={todo.id} className='link' >
-                            <TodoPreview todo={todo} handleDelete={handleDelete} />
+                            <TodoPreview todo={todo} handleDelete={handleDelete} toggleDone={toggleDone} />
                         </Link>
                     </li>
                 )

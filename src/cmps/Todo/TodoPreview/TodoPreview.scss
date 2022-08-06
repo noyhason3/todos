@@ -1,13 +1,72 @@
-.todo-preview{
-    .delete-btn {
-        float: right;
-        width: 2rem;
+.todo-preview {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e5d8b5a3;
+    border-radius: 1rem;
+    width: 100%;
+
+    &:hover {
+        opacity: 0.8;
+        transition: 0.4s;
     }
 
-    .delete-btn:hover,
-    .delete-btn:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
+    .data-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: start;
+        align-self: flex-start;
+        margin: auto;
+        &.done-todo {
+            text-decoration: line-through;
+        }
+        .todo-content {
+            width:100%; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: start;
+            align-self: flex-start;
+        }
+    }
+    .img-container {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        .done-mark,
+        .delete-btn {
+            float: right;
+            width: 1rem;
+            padding: 10px;
+            border-radius: 1rem;
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+    }
+}
+
+@media (max-width: 580px) {
+    .todo-list {
+        flex-direction: column;
+    }
+    .todo-preview {
+        width: 100%;
+        &:hover {
+            .todo-data {
+                visibility: visible;
+                text-overflow: ellipsis;
+                width: 100%;
+            }
+        }
+        .todo-img {
+            overflow: hidden;
+            width: unset;
+        }
     }
 }

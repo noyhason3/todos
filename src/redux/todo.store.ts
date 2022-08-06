@@ -8,16 +8,40 @@ interface ITodoState {
     currTodo: ITodo | null
 }
 
-const initialtodos = [
+const initialtodos: ITodo[] = [
     {
-        "id": uuidv4(),
-        "title": "clean home",
-        "body": "need to clean home"
+        id: uuidv4(),
+        title: "clean home",
+        content: "need to clean home",
+        isDone: true
     },
     {
-        "id": uuidv4(),
-        "title": "shopping",
-        "body": "need to buy food"
+        id: uuidv4(),
+        title: "shopping",
+        content: "need to buy food",
+        isDone: false
+    },
+    {
+        id: uuidv4(),
+        title: "Study",
+        content: "Learn some stuff",
+        isDone: true
+    },
+    {
+        id: uuidv4(),
+        title: "Wash the dishes",
+        content: "All from all day, clean with the new special soap for dishes",
+        isDone: false
+    },
+    {
+        id: uuidv4(),
+        title: "vacuuming",
+        isDone: true
+    },
+    {
+        id: uuidv4(),
+        title: "But new phone",
+        isDone: false
     }
 ]
 
@@ -30,6 +54,8 @@ export const todoSlice = createSlice({
     reducers: {
         setTodos: (state) => {
             const existTodos = storageService.load('todos') || [];
+            console.log(existTodos);
+
             state.todos = !!existTodos.length ? existTodos : initialtodos;
         },
         setCurrTodo: (state, action) => {
@@ -39,6 +65,7 @@ export const todoSlice = createSlice({
         },
         addTodo: (state, action) => {
             action.payload.id = uuidv4();
+            action.payload.isDone = false;
             state.todos.push(action.payload)
             storageService.store('todos', state.todos)
         },

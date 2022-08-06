@@ -1,11 +1,13 @@
 export interface ITodo {
     id: string;
     title: string;
-    body: string;
+    content?: string;
+    isDone: boolean;
 }
 
 export interface ITodoForm {
-    id?:string;
+    id?: string;
     title: string;
-    body: string;
+    content?: string;
+    isDone: boolean;
 }

@@ -1,0 +1,102 @@
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    margin-top: 4rem;
+    .main {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .title {
+            font-family: Courgette;
+            font-size: 2rem;
+            font-weight: 700;
+            width: 15rem;
+            line-height: 4rem;
+            text-align: left;
+            color: #ba802f;
+        }
+        img {
+            width: 60%;
+        }
+    }
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .title-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        margin-bottom: 2rem;
+    }
+    .icon {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 60px;
+        cursor: pointer;
+        float: right;
+    }
+
+    .arrow {
+        top: 25px;
+        width: 90%;
+        height: 10px;
+        background-color: #4d9a32;
+
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        animation: arrow 700ms linear infinite;
+        $ani-speed: 2s;
+        animation: arrow-movement $ani-speed ease-in-out infinite;
+    }
+
+    .arrow::after,
+    .arrow::before {
+        content: "";
+        position: absolute;
+        width: 50%;
+        height: 10px;
+        right: -8px;
+        background-color: #4d9a32;
+    }
+
+    .arrow::after {
+        top: -11px;
+        transform: rotate(45deg);
+    }
+
+    .arrow::before {
+        top: 12px;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        transform: rotate(-45deg);
+    }
+    @keyframes arrow-movement {
+        0% {
+            opacity: 0;
+        }
+        70% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+}
+
+@media (max-width: 580px) {
+    .home {
+        flex-direction: column;
+        height: unset;
+        .main {
+            margin-top: 1rem;
+            flex-direction: column;
+        }
+    }
+}

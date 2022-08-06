@@ -5,7 +5,7 @@ import { TodoForm } from "../../../cmps/Todo/TodoForm/TodoForm";
 import { TodoList } from "../../../cmps/Todo/TodoList/TodoList";
 import { ITodo } from "../../../models/todo.model";
 import { AppDispatch, RootState } from "../../../redux/store";
-import { deleteTodo, setTodos } from "../../../redux/todo.store";
+import { deleteTodo, setTodos, updateTodo } from "../../../redux/todo.store";
 
 export const TodoPage: FunctionComponent = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -21,10 +21,16 @@ export const TodoPage: FunctionComponent = () => {
         dispatch(deleteTodo(id))
     }
 
+    const toggleDone = (ev: React.FormEvent<HTMLInputElement>, todo: ITodo) => {
+        ev.stopPropagation()
+        ev.preventDefault()
+        dispatch(updateTodo({ ...todo, isDone: !todo.isDone }))
+    }
+
     return <section className="todo">
-        <h1>Todos</h1>
-        <TodoList todos={todos} handleDelete={handleDelete} />
+        <h1 className="title">My Tasks:</h1>
         <TodoForm />
+        <TodoList todos={todos} handleDelete={handleDelete} toggleDone={toggleDone} />
         <Outlet />
     </section>
 }

@@ -19,6 +19,22 @@
     font-family: "Courgette";
     text-transform: capitalize;
   }
+
+  button {
+    border: none;
+    padding: 0.2rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background-color: #4d9a32;
+    color: #fff;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 }
 
 .App-logo {
