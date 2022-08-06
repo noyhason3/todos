@@ -1,4 +1,4 @@
-[
+export let todos = [
     {
         "id": "abc123",
         "title": "clean home",

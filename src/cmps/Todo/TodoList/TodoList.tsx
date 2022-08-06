@@ -4,7 +4,7 @@ import { TodoPreview } from "../TodoPreview/TodoPreview";
 import './TodoList.scss'
 
 interface ITodoListProps {
-    todos: ITodo[]
+    todos: ITodo[],
 }
 
 export const TodoList: FunctionComponent<ITodoListProps> = ({ todos }) => {

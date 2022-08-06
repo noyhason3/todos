@@ -3,3 +3,8 @@ export interface ITodo {
     title: string;
     body: string;
 }
+
+export interface ITodoForm {
+    title: string;
+    body: string;
+}

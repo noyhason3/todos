@@ -1,5 +1,24 @@
+@font-face {
+  font-family: "Courgette";
+  src: url("./asstets/fonts/Courgette-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("./asstets/fonts/Quicksand-Regular.ttf");
+}
+
 .App {
+  font-family: "Quicksand";
   text-align: center;
+  max-width: 800px;
+  margin: auto;
+  margin-bottom: 1rem;
+
+  .title {
+    font-family: "Courgette";
+    text-transform: capitalize;
+  }
 }
 
 .App-logo {

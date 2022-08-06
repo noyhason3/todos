@@ -5,6 +5,8 @@ interface ITodoPreviewProps {
     todo: ITodo;
 }
 
+
+
 export const TodoPreview: FunctionComponent<ITodoPreviewProps> = ({ todo }) => {
 
     return <section className="todo-preview">
